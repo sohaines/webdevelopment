@@ -10,7 +10,7 @@
     "footer footer footer footer"
     "image image image years";
       grid-template-columns: auto auto auto auto;
-      grid-template-rows: 80px 225px auto 135px;
+      grid-template-rows: auto auto auto auto;
       gap: 3px;
       background-color: dodgerblue;
       padding: 5px;
@@ -33,8 +33,8 @@
       grid-area: footer;
       text-align: center;
     }
-    .container div.image {
-      grid-column: image
+    .image {
+      grid-area: image
     }
     .container div.years {
       grid-area: years;
@@ -114,12 +114,15 @@
     <h3>Description</h3>
       <h4>The medical drama series focuses on a group of young doctors at Seattle Grace Mercy West Hospital, who began their careers at the facility as interns. One of the young doctors and the show's namesake, Meredith Grey, is the daughter of a famous surgeon.</h4>
   </div>
-    <div class="image">
-      <img src="https://upload.wikimedia.org/wikipedia/en/a/ac/GreysAnatomysSeason1Cast.jpg" alt="Grey's Anatomy Image">
+  <div class="image">
+    <img src="https://upload.wikimedia.org/wikipedia/en/a/ac/GreysAnatomysSeason1Cast.jpg"
+         alt="Grey's Anatomy Image" style="width:100%;">
+  </div>
+
   <div class="years">
     <h3>Show's Years</h3>
     <h3>2005 - Present Day</h3>
-
+  </div>
     </div>
 
 </body>
