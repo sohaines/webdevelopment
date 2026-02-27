@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container {
+            display: grid;
+            grid-template-areas:
+    "header header header header"
+    "menu menu content content"
+    "footer footer footer footer"
+    "image image image years";
+            grid-template-columns: auto auto auto auto;
+            grid-template-rows: auto auto auto auto;
+            gap: 3px;
+            background-color: dodgerblue;
+            padding: 5px;
+        }
+        .container div {
+            background-color: white;
+            padding: 10px;
+        }
+        .container div.header {
+            grid-area: header;
+            text-align: center;
+        }
+        .container div.menu {
+            grid-area: menu;
+        }
+        .container div.content {
+            grid-area: content;
+        }
+        .container div.footer {
+            grid-area: footer;
+            text-align: center;
+        }
+        .image {
+            grid-area: image
+        }
+        .container div.years {
+            grid-area: years;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>Gossip Girl</h2>
+    </div>
+    <div class="menu">
+        <h3>Main Characters</h3>
+        <ul>
+            <li>Serena Van der Woodson</li>
+        </ul>
+        <ul>
+            <li>Balir Wardorf</li>
+        </ul>
+        <ul>
+            <li>Chuck Bass</li>
+        </ul>
+        <ul>
+            <li>Nate Archibald</li>
+        </ul>
+        <ul>
+            <li>Dan Humphrey</li>
+        </ul>
+        <ul>
+            <li>Jenny Humphery</li>
+        </ul>
+        <ul>
+            <li>Georgina Sparks</li>
+        </ul>
+        <ul>
+            <li>Vanessa Abrams</li>
+        </ul>
+        <ul>
+            <li>Lily Van der Woodson</li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h3>Played By</h3>
+        <ul>
+            <li>Blake Lively</li>
+        </ul>
+        <ul>
+            <li>Leighton Meester</li>
+        </ul>
+        <ul>
+            <li>Ed Westwick</li>
+        </ul>
+        <ul>
+            <li>Chace Crawford</li>
+        </ul>
+        <ul>
+            <li>Penn Badgley</li>
+        </ul>
+        <ul>
+            <li>Taylor Momson</li>
+        </ul>
+        <ul>
+            <li>Michelle Trachtenburg</li>
+        </ul>
+        <ul>
+            <li>Jessica Szohr</li>
+        </ul>
+        <ul>
+            <li>Kelley Rutherford</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <h3>Description</h3>
+        <h4>High school is over for the privileged former students at an exclusive prep school on Manhattan's Upper East Side, but Gossip Girl still shares text-messaged scoops on scandals and heartache. As the graduates embark on their futures, with some attending college and others focusing on burgeoning careers, Gossip Girl continues to stir the pot and feed any potential scandals. And still the identity of Gossip Girl remains a mystery.</h4>
+    </div>
+    <div class="image">
+        <img src="https://upload.wikimedia.org/wikipedia/en/d/d1/Gossip_Girl_season_3_DVD.png"
+             alt="Grey's Anatomy Image" style="width:100%;">
+    </div>
+
+    <div class="years">
+        <h3>Show's Years</h3>
+        <h3>2007 - 2012y</h3>
+    </div>
+</div>
+
+</body>
+</html>
