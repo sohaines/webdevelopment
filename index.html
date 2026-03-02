@@ -54,6 +54,27 @@
         border: 5px solid #237aaf;
         margin: 50px auto;
 
+        .photo {
+            display:none;
+            margin-top:10px
+        }
+
+     .location {
+         color: blue;
+         cursor: pointer;
+         font-weight: bold;
+         position: relative;
+         display: inline;
+     }
+
+      .location:hover + .photo {
+          position: relative;
+          display: block;
+          width: 100vw;
+          height: auto;
+          padding: 0.5rem 4rem 2rem 4rem;
+          transition: opacity 3s;
+      }
     }
 </style>
 </html>
