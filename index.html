@@ -6,7 +6,7 @@
 </head>
 <body style="background-color: #cdebf6;">
 
-    <h1 id="firstH1">Homepage</h1>
+<h1 style="text-align: center; text-decoration-line:overline; text-decoration-color:dodgerblue" id="opening">Homepage</h1>
     <p style = "font-family:'Courier New', Courier, serif";>
         <b>Spring 2026</b>
     </p>
@@ -59,11 +59,17 @@
         animation: changeColor 0s forwards;
         animation-delay: 3s;
         text-align: center;
+        animation: colorCycle 3s infinite;
     }
 
-    @keyframes changeColor {
-        to {
-            color: #0080df;
-        }
+    @keyframes colorCycle {
+        0%   { color: dodgerblue; }
+        25%  { color: royalblue; }
+        50%  { color: cornflowerblue; }
+        75%  { color: skyblue; }
+        100% { color: lightskyblue; }
+    }
+
+
 </style>
 </html>
