@@ -5,7 +5,7 @@
     <title>First Page</title>
 </head>
 <body>
-  <h1>First Page</h1>
+  <h1 id="h1" onclick="changeHeader()">First Page</h1>
     <div class="beggining"></div>
 
     <ol type="A">
@@ -55,5 +55,22 @@
 
 <script>
     console.log("Hello");
+
+    let x = 5;
+    console.log(x, x+x);
+    let y = 5;
+    console.log(y, y+y);
+
+    console.log("x+y", y+y);
+
+    x = x+1
+    console.log("x", x);
+
+    function changeHeader() {
+        let element = document.getElementById("h1");
+        console.log(element);
+        element.innerText = "This is new text";
+        element.style.color = "red";
+    }
 </script>
 </html>
