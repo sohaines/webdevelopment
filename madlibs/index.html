@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MadLibs</title>
+</head>
+<body>
+  <h1>MadLibs</h1>
+
+  <div id="entry">
+    <h2>My test page</h2>
+    <p>Adjective: <input type="text" id="adjective1_input"> <p>
+    <p>Noun: <input type="text" id="noun1_input"> <p>
+    <p>Animal: <input type="text" id="animal_input"> <p>
+    <p>Same aniaml: <input type="text" id="same_animal_input"> <p>
+    <p>Verb ending in -ing: <input type="text" id="verb1_input"> <p>
+    <p>Verb:<input type="text" id="verb2_input"> <p>
+    <p>Adjective: <input type="text" id="adjective2_input"> <p>
+    <p>Adjective: <input type="text" id="adjective3_input"> <p>
+    <button onclick="madlibs()">Submit</button>
+  </div>
+
+  <div id="results">
+       <h2>Results</h2>
+    <p>When I arrived at school, my <span id="adjective1_output">(adjective)</span> teacher told us to bring a <span id="noun1_output">(noun)</span> to class.
+        My best friend showed up with a <span id="animal_output">(animal)</span> inside their backpack.
+        During class, the <span id="same_animal_output">(animal)</span> started <span id="verb1_output">(verb ending in -ing)</span> across the classroom.
+        Everyone began to <span id="verb2_output" >(verb)</span> because it was so <span id="adjective2_output">(adjective)</span>.
+        By the end of the day, the principal called it the most <span id="adjective3_output">(adjective)</span> school day ever.
+      </p>
+  </div>
+
+</body>
+
+<script>
+  function madlibs() {
+    console.log("submit")
+    let adjective1_input = document.getElementById("adjective1_input");
+    document.getElementById("adjective1_output").innerHTML = adjective1_input.value;
+    console.log(adjective1_input);
+    console.log(adjective1_input.value);
+  }
+</script>
+
+</html>
