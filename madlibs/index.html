@@ -34,6 +34,7 @@
 
 <script>
   function madlibs() {
+      document.getElementById("entry").style.display ="none";
     console.log("submit")
     let adjective1_input = document.getElementById("adjective1_input");
     document.getElementById("adjective1_output").innerHTML = adjective1_input.value;
@@ -74,6 +75,7 @@
     document.getElementById("adjective3_output").innerHTML = adjective3_input.value;
     console.log(adjective3_input);
       console.log(adjective3_input.value);
+      document.getElementById("results").style.display = "block";
       }
 </script>
 
