@@ -17,7 +17,7 @@
     <p>Verb:<input type="text" id="verb2_input"> <p>
     <p>Adjective: <input type="text" id="adjective2_input"> <p>
     <p>Adjective: <input type="text" id="adjective3_input"> <p>
-    <button onclick="madlibs()">Submit</button>
+      <button id="submitBtn" onclick="madlibs()" disabled>Submit</button>
   </div>
 
   <div id="results">
@@ -35,6 +35,9 @@
 <style>
     .color {
         color: red;
+    }
+    #results {
+        display: none;
     }
 </style>
 
@@ -83,6 +86,13 @@
 
       document.getElementById("results").style.display = "block";
       document.getElementById("entry").style.display ="none";
+
+      if(adjective1_input.value !=""){
+          document.getElementById("results").style.display = "block";
+          document.getElementById("entry").style.display ="none";
+      }
+
+
       }
 </script>
 
