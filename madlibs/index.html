@@ -17,7 +17,7 @@
     <p>Verb:<input type="text" id="verb2_input"> <p>
     <p>Adjective: <input type="text" id="adjective2_input"> <p>
     <p>Adjective: <input type="text" id="adjective3_input"> <p>
-      <button id="submitBtn" onclick="madlibs()" disabled>Submit</button>
+      <button onclick="madlibs()">Submit</button>
   </div>
 
   <div id="results">
@@ -42,6 +42,7 @@
 </style>
 
 <script>
+
   function madlibs() {
     console.log("submit")
     let adjective1_input = document.getElementById("adjective1_input");
@@ -87,10 +88,16 @@
       document.getElementById("results").style.display = "block";
       document.getElementById("entry").style.display ="none";
 
-      if(adjective1_input.value !=""){
+      if(adjective1_input.value !="" && noun1_input.value != "") {
           document.getElementById("results").style.display = "block";
-          document.getElementById("entry").style.display ="none";
+          document.getElementById("entry").style.display = "none";
       }
+      else{
+          alert("Please enter values for every input")
+
+      }
+
+
 
 
       }
