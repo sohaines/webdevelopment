@@ -9,13 +9,10 @@
 
   <h3>Add a task:</h3>
     <input id="task" type="text">
-    <button id="add" onclick="new_task()">Add</button>
+    <button id="add" onclick="new_task()" >Add</button>
 
   <h3>List of tasks:</h3>
   <div id="list">
-    <div class="task"><input type="checkbox">Item 1</div>
-    <div class="task"><input type="checkbox">Item 1</div>
-    <div class="task"><input type="checkbox">Item 1</div>
   </div>
 
 </body>
@@ -54,6 +51,7 @@
   .completed {
     text-decoration: line-through;
     opacity: 0.6;
+
   }
 
 </style>
@@ -96,6 +94,21 @@
 
       }
     });
+
+    let trash = document.createElement("span");
+    trash.className = "trash"
+    trash.innerText = "🗑️";
+    trash.style.float="right";
+    trash.addEventListener("click", delete_task);
+    new_div.appendChild(trash);
+
+    task_input.value = ""
+    task_input.focus();
+  }
+
+  function delete_task(e) {
+    console.log(e);
+
   }
 </script>
 </html>
