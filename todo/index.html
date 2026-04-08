@@ -88,6 +88,18 @@
       return false
     }
 
+      let existing = getCookie("tasks");
+
+
+      if (existing === "") {
+          existing = task_name;
+      } else {
+          existing = existing + "|" + task_name;
+      }
+
+
+      setCookie("tasks", existing, 7);
+
     console.log(task_name);
 
     let new_div = document.createElement("div");
