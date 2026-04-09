@@ -54,6 +54,10 @@
 
   }
 
+  #list > div {
+      margin: 10px;
+  }
+
 </style>
 
 <script>
@@ -88,19 +92,15 @@
       return false
     }
 
-      let existing = getCookie("tasks");
 
-
-      if (existing === "") {
-          existing = task_name;
-      } else {
-          existing = existing + "|" + task_name;
-      }
-
-
-      setCookie("tasks", existing, 7);
 
     console.log(task_name);
+      let now = new Date();
+      let current_cookie = getCookie("task")
+      console.log(current_cookie);
+      setCookie("task", current_cookie + "|" + task_name, 15)
+
+
 
     let new_div = document.createElement("div");
     document.getElementById("list").appendChild(new_div);
