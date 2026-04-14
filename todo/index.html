@@ -83,6 +83,36 @@
         }
         return "";
     }
+    function create_task_element(task_name) {
+        if (!task_name) return;
+
+        let new_div = document.createElement("div");
+        document.getElementById("list").appendChild(new_div);
+
+        let checkbox = document.createElement("input");
+        checkbox.setAttribute("type", "checkbox");
+        new_div.appendChild(checkbox);
+
+        let span = document.createElement("span");
+        span.setAttribute("class", "task");
+        span.innerText = task_name;
+        new_div.appendChild(span);
+
+        checkbox.addEventListener("change", function () {
+            if (this.checked) {
+                span.classList.add("completed");
+            } else {
+                span.classList.remove("completed");
+            }
+        });
+
+        let trash = document.createElement("span");
+        trash.className = "trash";
+        trash.innerText = "🗑️";
+        trash.style.float = "right";
+        trash.addEventListener("click", delete_task);
+        new_div.appendChild(trash);
+    }
 
   function new_task() {
     let task_input = document.getElementById('task');
@@ -92,53 +122,15 @@
       return false
     }
 
-
-
     console.log(task_name);
       let now = new Date();
       let current_cookie = getCookie("task")
       console.log(current_cookie);
       setCookie("task", current_cookie + "|" + task_name, 15)
 
-
-
-    let new_div = document.createElement("div");
-    document.getElementById("list").appendChild(new_div);
-
-    let checkbox = document.createElement("input");
-    checkbox.setAttribute("type", "checkbox");
-    new_div.appendChild(checkbox);
-
-    let span = document.createElement("span");
-    span.setAttribute("class", "task");
-    new_div.appendChild(span);
-
-    document.getElementById("task").value = "";
-
-    span.innerText = task_name;
-    task_input.value = "";
-
-    console.log(new_div);
-    console.log(document.getElementById("task"));
-
-    checkbox.addEventListener("change", function () {
-      if (this.checked) {
-        span.classList.add("completed");
-      } else {
-        span.classList.remove("completed");
-
-      }
-    });
-
-    let trash = document.createElement("span");
-    trash.className = "trash"
-    trash.innerText = "🗑️";
-    trash.style.float="right";
-    trash.addEventListener("click", delete_task);
-    new_div.appendChild(trash);
-
     task_input.value = ""
     task_input.focus();
+      create_task_element(task_name);
   }
 
   function delete_task(e) {
@@ -147,15 +139,14 @@
 
   }
 
-  let current_cookie = getCookie("task");
-    console.log(current_cookie);
-    current_cookie = current_cookie.split("|");
-    console.log(current_cookie);
-    // console.log(current_cookie.length);
-    // console.log(current_cookie[1]);
+    let current_cookie = getCookie("task");
 
-    for (let i = 0; i <6; i = i +1){
-        console.log(current_cookie[i]);
+    if (current_cookie !== "") {
+        let tasks = current_cookie.split("|");
+
+        for (let i = 0; i < tasks.length; i++) {
+            create_task_element(tasks[i]);
+        }
     }
 
 </script>
