@@ -8,8 +8,9 @@
   <h1 style = "text-align: center" class="todo">To-Do List</h1>
 
   <h3>Add a task:</h3>
-    <input id="task" type="text">
-    <button id="add" onclick="new_task()" >Add</button>
+    <input id="task" placeholder="add task here..." type="text">
+  <input id="date" type="date" placeholder="add date here...">
+    <button id="add" onclick="new_task()" >Confirm</button>
 
   <h3>List of tasks:</h3>
   <div id="list">
@@ -83,7 +84,7 @@
         }
         return "";
     }
-    function create_task_element(task_name) {
+    function create_task_element(task_name, date_name) {
         if (!task_name) return;
 
         let new_div = document.createElement("div");
@@ -97,6 +98,12 @@
         span.setAttribute("class", "task");
         span.innerText = task_name;
         new_div.appendChild(span);
+
+        let date_span = document.createElement("span");
+        date_span.innerText = " (" + date_name + ")";
+        date_span.style.marginLeft = "10px";
+        date_span.style.color = "gray";
+        new_div.appendChild(date_span);
 
         checkbox.addEventListener("change", function () {
             if (this.checked) {
@@ -114,24 +121,33 @@
         new_div.appendChild(trash);
     }
 
-  function new_task() {
-    let task_input = document.getElementById('task');
+    function new_task() {
+        let task_input = document.getElementById('task');
+        let date_input = document.getElementById('date');
 
-    let task_name = document.getElementById("task").value;
-    if (task_name === "") {
-      return false
+        let task_name = task_input.value;
+        let date_name = date_input.value;
+
+        if (task_name === "") {
+            return false;
+        }
+
+
+        let current_task_cookie = getCookie("task");
+        setCookie("task", current_task_cookie + "|" + task_name, 15);
+
+
+        let current_date_cookie = getCookie("date");
+        setCookie("date", current_date_cookie + "|" + date_name, 15);
+
+
+        create_task_element(task_name, date_name);
+
+
+        task_input.value = "";
+        date_input.value = "";
+        task_input.focus();
     }
-
-    console.log(task_name);
-      let now = new Date();
-      let current_cookie = getCookie("task")
-      console.log(current_cookie);
-      setCookie("task", current_cookie + "|" + task_name, 15)
-
-    task_input.value = ""
-    task_input.focus();
-      create_task_element(task_name);
-  }
 
   function delete_task(e) {
     // console.log(e.target);
