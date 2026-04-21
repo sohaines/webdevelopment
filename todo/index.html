@@ -132,17 +132,13 @@
             return false;
         }
 
-
         let current_task_cookie = getCookie("task");
         setCookie("task", current_task_cookie + "|" + task_name, 15);
-
 
         let current_date_cookie = getCookie("date");
         setCookie("date", current_date_cookie + "|" + date_name, 15);
 
-
         create_task_element(task_name, date_name);
-
 
         task_input.value = "";
         date_input.value = "";
