@@ -6,6 +6,7 @@
 </head>
 <body>
   <h1>Date</h1>
+  <p>Days remaining: <span id="countdown"></span></p>
 </body>
 
 <script>
@@ -13,10 +14,13 @@
     console.log("NOW:" + now);
     console.log(now.getTime());
 
-    let then = new Date(1776784713550);
+    let then = new Date("2026-10-23T00:00:00");
     console.log("THEN:" + then);
 
-    console.log((then - now) / 1000 / 60 / 60 / 24);
+    let diffInMs = then - now;
+    let daysLeft = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+
+    document.getElementById("countdown").innerText = daysLeft;
 </script>
 
 </html>
