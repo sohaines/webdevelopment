@@ -5,22 +5,62 @@
     <title>Date</title>
 </head>
 <body>
-  <h1>Date</h1>
-  <p>Days remaining: <span id="countdown"></span></p>
+  <h1>Countdown to 17th Birthday</h1>
+  <h3>My birthday is in <span id="days"></span> days, <span id="hours"></span> hours, <span id="minutes"></span> minutes, and <span id="seconds"></span> seconds</h3>
 </body>
 
+<style>
+
+    h1 {
+    color: royalblue;
+    font-size: 50px;
+    font-family: 'Courier New', Courier, serif;
+    text-shadow: #12239e 3px 1px 1px;
+    text-align: center;
+    text-decoration-line: overline;
+    text-decoration-color: dodgerblue;
+        border: 3px dodgerblue solid;
+        padding: 10px;
+        margin: 20px;
+        background-color: skyblue;
+}
+    h3 {
+        color: royalblue;
+        font-size: 25px;
+        text-align: center;
+    }
+
+    body {
+        background-color: aliceblue;
+    }
+</style>
+
 <script>
-    let now = new Date();
-    console.log("NOW:" + now);
-    console.log(now.getTime());
+    count();
+    setInterval(count, 1000);
 
-    let then = new Date("2026-10-23T00:00:00");
-    console.log("THEN:" + then);
+    function count() {
 
-    let diffInMs = then - now;
-    let daysLeft = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+        let now = new Date();
+        console.log("NOW:" + now);
+        console.log(now.getTime());
 
-    document.getElementById("countdown").innerText = daysLeft;
+        let then = new Date("2026-10-23T00:00:00");
+        console.log("THEN:" + then);
+
+        console.log((then - now) / 1000 / 60 / 60 / 24)
+        let difference = then - now;
+        let days = (difference) / 1000 / 60 / 60 / 24;
+        let hours = Math.floor(difference) / (1000 * 60 * 60 * 24) % 24;
+        let minutes = Math.floor(difference) / (1000 * 60) % 60;
+        let seconds = Math.floor(difference) / (1000) % 60;
+
+
+        document.getElementById("days").innerHTML = Math.floor(days);
+        document.getElementById("hours").innerHTML = Math.floor(hours);
+        document.getElementById("minutes").innerHTML = Math.floor(minutes);
+        document.getElementById("seconds").innerHTML = Math.floor(seconds);
+    }
 </script>
 
 </html>

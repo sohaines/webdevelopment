@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Date</title>
+</head>
+<body>
+<h1>Countdown</h1>
+<h3>Enter your date:</h3>
+<input id="datename" placeholder="add event name here..." type="text">
+<input id="date" placeholder="add date here..." type="date">
+<button id="add" onclick="new_date()" >Confirm</button>
+
+<h4><span id="event"></span> is in <span id="days"></span> days, <span id="hours"></span> hours, <span id="minutes"></span> minutes, and <span id="seconds"></span> seconds</h4>
+</body>
+
+<style>
+
+  h1 {
+    color: royalblue;
+    font-size: 50px;
+    font-family: 'Courier New', Courier, serif;
+    text-shadow: #12239e 3px 1px 1px;
+    text-align: center;
+    text-decoration-line: overline;
+    text-decoration-color: dodgerblue;
+    border: 3px dodgerblue solid;
+    padding: 10px;
+    margin: 20px;
+    background-color: skyblue;
+  }
+  h4 {
+    color: royalblue;
+    font-size: 25px;
+    text-align: center;
+  }
+
+  h3 {
+    color: royalblue;
+    font-size: 25px;
+    text-align: left
+  }
+
+  body {
+    background-color: aliceblue;
+  }
+</style>
+
+<script>
+  countdown();
+  setInterval(countdown, 1000);
+
+  function countdown(new_date) {
+    if (!new_date) return;
+  }
+
+  function countdown() {
+    let event = datename
+
+    let now = new Date();
+    console.log("NOW:" + now);
+    console.log(now.getTime());
+
+    let then = new Date(new_date);
+    console.log("THEN:" + then);
+
+
+    console.log((then - now) / 1000 / 60 / 60 / 24);
+    let difference = then - now;
+    let days = (difference) / 1000 / 60 / 60 / 24;
+    let hours = Math.floor(difference) / (1000 * 60 * 60 * 24) % 24;
+    let minutes = Math.floor(difference) / (1000 * 60) % 60;
+    let seconds = Math.floor(difference) / (1000) % 60;
+
+
+    document.getElementById("days").innerHTML = Math.floor(days);
+    document.getElementById("hours").innerHTML = Math.floor(hours);
+    document.getElementById("minutes").innerHTML = Math.floor(minutes);
+    document.getElementById("seconds").innerHTML = Math.floor(seconds);
+    document.getElementById("event").innerHTML = document.createElement("event");
+  }
+</script>
+
+</html>
