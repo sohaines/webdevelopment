@@ -7,11 +7,13 @@
 <body>
 <h1>Countdown</h1>
 <h3>Enter your date:</h3>
+
 <input id="datename" placeholder="add event name here..." type="text">
 <input id="date" placeholder="add date here..." type="date">
 <button id="add" onclick="new_date()" >Confirm</button>
-
+<div>
 <h4><span id="event"></span> is in <span id="days"></span> days, <span id="hours"></span> hours, <span id="minutes"></span> minutes, and <span id="seconds"></span> seconds</h4>
+</div>
 </body>
 
 <style>
@@ -47,6 +49,8 @@
 </style>
 
 <script>
+
+  document.getElementById("event")
   let targetDate = null;
   let targetName = null;
 
