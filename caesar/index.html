@@ -7,32 +7,55 @@
 <body>
 
 <h1>Caesar Cipher</h1>
-<p><label for="key"> Enter a key: </label><input type="number" id="key" value="3"></p>
-<p><label for="plaintext"> Enter your message: </label><input type="text" id="plaintext" value="hello"></p>
-<p><button id="encode" onclick="encode()">Encode</button></p>
+<p><label for="key">Enter a key: </label><input type="number" id="key" value="3"></p>
+<p><label for="plaintext">Enter your message: </label><input type="text" id="plaintext" value="hello"></p>
+<p>
+    <button onclick="encode()">Encode</button>
+    <button onclick="decode()">Decode</button>
+</p>
 <p id="ciphertext"></p>
-</body>
 
 <script>
-  function encode(){
-    let key = document.getElementById("key").value;
-    key = parseInt(key);
-    let plaintext = document.getElementById("plaintext").value;
-    plaintext = plaintext.toUpperCase();
+    let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-   let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let ciphertext = "";
+    function encode() {
+        let key = parseInt(document.getElementById("key").value);
+        let plaintext = document.getElementById("plaintext").value.toUpperCase();
+        let ciphertext = "";
 
-    // console.log(plaintext);
-    for(let i = 0; i < plaintext.length; i=i+1){
-      let charLocation = chars.indexOf(plaintext[i])
-      let newCharLocation= charLocation + key;
-      let newChar = chars[newCharLocation];
-      console.log(plaintext[i], charLocation, newCharLocation, newChar);
-      ciphertext = ciphertext + newChar;
+        for (let i = 0; i < plaintext.length; i++) {
+            let charLocation = chars.indexOf(plaintext[i]);
+
+            if (charLocation === -1) {
+                ciphertext += plaintext[i];
+            } else {
+                let newCharLocation = (charLocation + key) % 26;
+                ciphertext += chars[newCharLocation];
+            }
+        }
+
+        document.getElementById("ciphertext").innerText = "Encoded: " + ciphertext;
     }
 
-    document.getElementById("ciphertext").innerText = ciphertext;
-  }
+    function decode() {
+        let key = parseInt(document.getElementById("key").value);
+        let ciphertext = document.getElementById("plaintext").value.toUpperCase();
+        let plaintext = "";
+
+        for (let i = 0; i < ciphertext.length; i++) {
+            let charLocation = chars.indexOf(ciphertext[i]);
+
+            if (charLocation === -1) {
+                plaintext += ciphertext[i];
+            } else {
+                let newCharLocation = (charLocation - key + 26) % 26;
+                plaintext += chars[newCharLocation];
+            }
+        }
+
+        document.getElementById("ciphertext").innerText = "Decoded: " + plaintext;
+    }
 </script>
+
+</body>
 </html>
