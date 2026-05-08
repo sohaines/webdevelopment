@@ -10,6 +10,10 @@
 
 <h1>CityBike API</h1>
 <p id="status">Loading...</p>
+<label for="city-select">Choose a City:</label>
+<select id="city-select">
+    <option value="">-- Select a City --</option>
+</select>
 <div id="network-list"></div>
 
 <script>
@@ -21,21 +25,33 @@
             return response.json();
         })
         .then(function(data) {
-            console.log(data);
-
             let networks = data.networks;
 
             document.getElementById("status").innerHTML = "Showing " + networks.length + " networks";
 
-            let container = document.getElementById("network-list");
+            // Populate the dropdown
+            let select = document.getElementById("city-select");
+            networks.forEach(function(network, index) {
+                let option = document.createElement("option");
+                option.value = index;
+                option.textContent = network.location.city + " (" + network.location.country + ")";
+                select.appendChild(option);
+            });
 
-            networks.forEach(function(network) {
+            // Listen for selection
+            select.addEventListener("change", function() {
+                let container = document.getElementById("network-list");
+                container.innerHTML = ""; // Clear previous
+
+                if (this.value === "") return; // Nothing selected
+
+                let network = networks[this.value];
                 let div = document.createElement("div");
                 div.innerHTML = `
-            <h2>${network.name}</h2>
-            <p>City: ${network.location.city}</p>
-            <p>Country: ${network.location.country}</p>
-          `;
+                    <h2>${network.name}</h2>
+                    <p>City: ${network.location.city}</p>
+                    <p>Country: ${network.location.country}</p>
+                `;
                 container.appendChild(div);
             });
         })
