@@ -1,0 +1,49 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CityBike API</title>
+</head>
+<body>
+
+<h1>CityBike API</h1>
+<p id="status">Loading...</p>
+<div id="network-list"></div>
+
+<script>
+    let url = "https://api.citybik.es/v2/networks";
+
+    fetch(url)
+        .then(function(response) {
+            if (!response.ok) throw new Error("Failed to fetch: " + response.status);
+            return response.json();
+        })
+        .then(function(data) {
+            console.log(data);
+
+            let networks = data.networks;
+
+            document.getElementById("status").innerHTML = "Showing " + networks.length + " networks";
+
+            let container = document.getElementById("network-list");
+
+            networks.forEach(function(network) {
+                let div = document.createElement("div");
+                div.innerHTML = `
+            <h2>${network.name}</h2>
+            <p>City: ${network.location.city}</p>
+            <p>Country: ${network.location.country}</p>
+          `;
+                container.appendChild(div);
+            });
+        })
+        .catch(function(error) {
+            document.getElementById("status").innerHTML = "Error: " + error.message;
+            console.error("Fetch error:", error);
+        });
+</script>
+
+</body>
+</html>
