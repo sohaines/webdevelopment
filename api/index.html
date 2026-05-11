@@ -9,12 +9,32 @@
 <body>
 
 <h1>CityBike API</h1>
-<p id="status">Loading...</p>
-<label for="city-select">Choose a City:</label>
+<p style = color:#237aaf; id="status">Loading...</p>
+<label style = color:#237aaf; for="city-select">Choose a City:</label>
 <select id="city-select">
     <option value="">-- Select a City --</option>
 </select>
-<div id="network-list"></div>
+<div style = color:#237aaf; id="network-list"></div>
+</body>
+
+<style>
+    h1 {
+        color: royalblue;
+        font-size: 50px;
+        font-family: 'Courier New', Courier, serif;
+        text-shadow: #12239e 3px 1px 1px;
+        text-align: center;
+        border: 3px dodgerblue solid;
+        padding: 10px;
+        margin: 20px;
+        background-color: skyblue;
+    }
+
+    .network-list {
+        color: #237aaf;
+        font-family:'Courier New', Courier, serif;
+    }
+</style>
 
 <script>
     let url = "https://api.citybik.es/v2/networks";
@@ -29,7 +49,7 @@
 
             document.getElementById("status").innerHTML = "Showing " + networks.length + " networks";
 
-            // Populate the dropdown
+
             let select = document.getElementById("city-select");
             networks.forEach(function(network, index) {
                 let option = document.createElement("option");
@@ -38,12 +58,12 @@
                 select.appendChild(option);
             });
 
-            // Listen for selection
+
             select.addEventListener("change", function() {
                 let container = document.getElementById("network-list");
-                container.innerHTML = ""; // Clear previous
+                container.innerHTML = "";
 
-                if (this.value === "") return; // Nothing selected
+                if (this.value === "") return;
 
                 let network = networks[this.value];
                 let div = document.createElement("div");
@@ -60,6 +80,4 @@
             console.error("Fetch error:", error);
         });
 </script>
-
-</body>
 </html>
