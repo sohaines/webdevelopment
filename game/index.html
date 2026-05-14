@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Wordle</title>
+</head>
+
+<body>
+  <h1>Wordle</h1>
+  <label style="font-size:25px; color:dodgerblue;" for="word-select">Choose your game mode:</label>
+  <select id="word-select" class="game-mode">
+    <option value="4">4 letters</option>
+    <option value="5">5 letters</option>
+    <option value="6">6 letters</option>
+  </select>
+
+  <div class="container">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+  </div>
+</body>
+
+<style>
+  .container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    background-color: #ffffff;
+    padding: 10px;
+  }
+  .container div {
+    background-color: #f3f3f3;
+    border: 3px solid #b8d8f4;
+    padding: 10px;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 50px;
+    font-family:'Courier New', Courier, serif;
+    text-shadow: #12239e 3px 1px 1px;
+    text-align: center;
+    border: 3px dodgerblue solid;
+    padding: 10px;
+    margin: 20px;
+    background-color: skyblue;
+    color: #cdebf6;
+    animation: changeColor 0s forwards;
+    animation-delay: 3s;
+    text-align: center;
+    animation: colorCycle 3s infinite;
+  }
+
+  @keyframes colorCycle {
+    0%   { color: dodgerblue; }
+    25%  { color: royalblue; }
+    50%  { color: cornflowerblue; }
+    75%  { color: skyblue; }
+    100% { color: lightskyblue; }
+
+  }
+
+  .game-mode{
+    color: dodgerblue;
+    font-size:18px;
+
+  }
+</style>
+</html>
