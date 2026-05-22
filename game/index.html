@@ -64,10 +64,30 @@
 </style>
 
 <script>
+  const words = {
+    4: ["cake", "frog", "lamp", "fish", "star", "bold", "cave", "desk", "edge", "fame",
+      "glow", "haze", "iris", "jade", "keen", "loft", "mist", "norm", "oval", "pace",
+      "quiz", "rust", "silk", "tame", "urge", "vast", "wand", "yarn", "zeal", "arch"],
+    5: ["plant", "storm", "brick", "grape", "sword", "blaze", "chirp", "draft", "elder",
+      "frost", "groan", "hedge", "inlet", "joust", "knack", "lunge", "merge", "notch",
+      "olive", "perch", "quirk", "reign", "shelf", "thump", "umbra", "vapor", "waltz",
+      "xenon", "yacht", "zonal", "crisp", "dwarf", "expel", "flint", "gripe"],
+    6: ["castle", "planet", "bridge", "oyster", "frosty", "blight", "canopy", "dagger",
+      "embark", "famine", "goblin", "hustle", "ignite", "jester", "knight", "locket",
+      "mangle", "nebula", "pardon", "quartz", "rattle", "saddle", "tangle",
+      "unfold", "vanish", "wither", "exotic", "yogurt", "zipper", "cactus", "dazzle",
+      "elapse", "gallop", "humble"]
+  };
+
+  let targetWord = "";
+  let currentRow = 0;
+
   const container = document.getElementById('grid');
   const select = document.getElementById('word-select');
 
   function buildGrid(wordLength) {
+    currentRow = 0;
+    targetWord = words[wordLength][Math.floor(Math.random() * words[wordLength].length)];
     container.innerHTML = '';
     container.style.gridTemplateColumns = `repeat(${wordLength}, auto)`;
 
@@ -93,6 +113,9 @@
               prevCell.value = '';
             }
           }
+          if (e.key === 'Enter') {
+            submitGuess();
+          }
         });
 
         container.appendChild(cell);
@@ -103,6 +126,66 @@
   select.addEventListener('change', function() {
     buildGrid(parseInt(select.value));
   });
+
+  function submitGuess() {
+    const wordLength = parseInt(select.value);
+
+    let guess = '';
+    for (let col = 0; col < wordLength; col++) {
+      guess += document.getElementById(`cell-${currentRow}-${col}`).value.toLowerCase();
+    }
+
+    if (guess.length < wordLength) {
+      alert("Not enough letters!");
+      return;
+    }
+
+    const target = targetWord.split('');
+    const guessArr = guess.split('');
+    const result = Array(wordLength).fill('grey');
+    const targetUsed = Array(wordLength).fill(false);
+    const guessUsed = Array(wordLength).fill(false);
+
+    for (let i = 0; i < wordLength; i++) {
+      if (guessArr[i] === target[i]) {
+        result[i] = 'green';
+        targetUsed[i] = true;
+        guessUsed[i] = true;
+      }
+    }
+
+    for (let i = 0; i < wordLength; i++) {
+      if (guessUsed[i]) continue;
+      for (let j = 0; j < wordLength; j++) {
+        if (!targetUsed[j] && guessArr[i] === target[j]) {
+          result[i] = 'yellow';
+          targetUsed[j] = true;
+          break;
+        }
+      }
+    }
+
+    for (let col = 0; col < wordLength; col++) {
+      const cell = document.getElementById(`cell-${currentRow}-${col}`);
+      cell.style.backgroundColor = result[col];
+      cell.style.borderColor = result[col];
+      cell.disabled = true;
+    }
+
+    if (guess === targetWord) {
+      setTimeout(() => alert("You got it! 🎉"), 100);
+      return;
+    }
+
+    currentRow++;
+
+    if (currentRow >= 6) {
+      setTimeout(() => alert(`Game over! The word was "${targetWord}"`), 100);
+      return;
+    }
+
+    document.getElementById(`cell-${currentRow}-0`).focus();
+  }
 
   buildGrid(parseInt(select.value));
 </script>
